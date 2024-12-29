@@ -19,14 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('roles', RoleController::class)->names([
-        'index' => 'roles.index',
-        'create' => 'roles.create',
-        'store' => 'roles.store',
-        'edit' => 'roles.edit',
-        'update' => 'roles.update',
-        'destroy' => 'roles.destroy',
-    ])->except('show');
+    Route::resource('roles', RoleController::class)->except('show');
 });
 
 require __DIR__ . '/auth.php';
