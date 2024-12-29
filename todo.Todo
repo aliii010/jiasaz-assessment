@@ -1,11 +1,3 @@
-models:
-    - shops model
-    - categories model
-    - Products model
-    - Orders model
-    - Order Items model
-
-functionalities:
-
-
-
+Role Management by Admin:
+    - RoleController to show roles, create role, update role, delete role.
+    - Blade template to create, update, and delete roles.
