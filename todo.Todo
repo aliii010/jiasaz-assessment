@@ -1,0 +1,11 @@
+models:
+    - shops model
+    - categories model
+    - Products model
+    - Orders model
+    - Order Items model
+
+functionalities:
+
+
+
