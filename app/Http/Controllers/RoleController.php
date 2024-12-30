@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -13,7 +14,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('roles.roles', compact('roles'));
+        $permissions = Permission::all();
+        return view('roles-and-permissions', compact('roles', 'permissions'));
     }
 
     /**
@@ -63,7 +65,36 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        Role::find($id)->delete();
+        $role = Role::find($id);
+
+        if ($role->name === 'admin') {
+            return redirect()->route('roles.index')->with('error', 'The admin role cannot be deleted.');
+        }
+
+        $role->delete();
+        return redirect()->route('roles.index')->with('success', 'Role deleted successfully.');
+    }
+
+    public function showAssignPermissionForm(string $roleId)
+    {
+        $role = Role::find($roleId);
+        $permissions = Permission::all();
+        return view('roles.assign-permission', compact('role', 'permissions'));
+    }
+
+    public function assignPermission(string $roleId, string $permissionId)
+    {
+        $role = Role::find($roleId);
+        $permission = Permission::find($permissionId);
+        $role->givePermissionTo($permission);
+        return redirect()->route('roles.index');
+    }
+
+    public function removePermission(string $roleId, string $permissionId)
+    {
+        $role = Role::find($roleId);
+        $permission = Permission::find($permissionId);
+        $role->revokePermissionTo($permission);
         return redirect()->route('roles.index');
     }
 }

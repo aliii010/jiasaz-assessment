@@ -1,3 +1,7 @@
 Role Management by Admin:
-    - RoleController to show roles, create role, update role, delete role.
-    - Blade template to create, update, and delete roles.
+    ✔ RoleController to show roles, create role, update role, delete role. @done(24-12-30 00:52)
+    ✔ Blade template to create, update, and delete roles. @done(24-12-30 00:52)
+    - be able to give and remove permission to roles.
+User Management by Admin:
+    - list, create, edit, and delete users.
+    - assign roles to users.
