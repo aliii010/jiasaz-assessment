@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/roles/{roleId}/revoke-permission/{permissionId}', [RoleController::class, 'removePermission'])->name('roles.revoke-permission');
 
     Route::resource('permissions', PermissionController::class)->except('show');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{userId}/roles', [UserController::class, 'showUserRoles'])->name('users.showUserRoles');
+    Route::put('/users/{userId}/roles', [UserController::class, 'updateRoles'])->name('users.updateRoles');
 });
 
 require __DIR__ . '/auth.php';
