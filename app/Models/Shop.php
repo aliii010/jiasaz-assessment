@@ -18,4 +18,9 @@ class Shop extends Model
     {
         return $this->hasMany(Product::class, 'shop_id');
     }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'shop_id');
+    }
 }
