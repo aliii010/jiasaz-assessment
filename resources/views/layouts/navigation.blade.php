@@ -23,6 +23,9 @@
                             {{ __('Roles & Permissions') }}
                         </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
+                        {{ __('Shops') }}
+                    </x-nav-link>
                 </div>
             </div>
 

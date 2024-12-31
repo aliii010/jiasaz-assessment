@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::find(3);
+        // $user = User::find(3);
 
-        $user->assignRole('admin');
+        // $user->assignRole('admin');
+
+
+        // \App\Models\User::factory(10)->create();
     }
 }
