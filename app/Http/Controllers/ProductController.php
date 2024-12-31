@@ -10,6 +10,6 @@ class ProductController extends Controller
     public function getShopsProducts($shopId)
     {
         $shop = Shop::find($shopId);
-        dd('helo');
+        dd($shop->products);
     }
 }
