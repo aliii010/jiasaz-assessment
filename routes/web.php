@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,5 +44,8 @@ Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
 
 // product routes
 Route::get('/shops/{shopId}/products', [ProductController::class, 'getShopsProducts'])->name('products.getShopsProducts');
+
+// order routes
+Route::post('/orders', [OrderController::class, 'createOrder'])->name('orders.createOrder');
 
 require __DIR__ . '/auth.php';

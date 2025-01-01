@@ -30,15 +30,26 @@
                 </form>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                     @foreach ($products as $product)
-                        <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4">
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
                             <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $product->name }}"
                                 class="w-full h-48 object-cover rounded-t-lg">
                             <h3 class="text-lg font-semibold mt-4">{{ $product->name }}</h3>
                             <p class="text-gray-600">{{ $product->description }}</p>
                             <p class="text-gray-800 font-bold">${{ number_format($product->price, 2) }}</p>
+                            <form action="{{ route('orders.createOrder') }}" method="POST"
+                                class="absolute bottom-4 right-4">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit"
+                                    class="btn btn-primary bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                    {{ __('Order') }}
+                                </button>
+                            </form>
                         </div>
                     @endforeach
+
                 </div>
             </div>
         </div>
