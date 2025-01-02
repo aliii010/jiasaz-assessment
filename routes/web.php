@@ -44,8 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/shops/{shopId}/products', [ProductController::class, 'getShopsProducts'])->name('products.getShopsProducts');
 
     // Order routes
-    Route::post('/orders', [OrderController::class, 'createOrder'])->name('orders.createOrder');
+    Route::post('/orders', [OrderController::class, 'createOrder'])->name('orders.createOrder')->middleware('role:customer');
     Route::get('/orders', [OrderController::class, 'showCustomerOrders'])->name('orders.showCustomerOrders')->middleware('role:customer');
+    Route::get('/orders/all', [OrderController::class, 'getAllOrders'])->name('orders.getAllOrders')->middleware('role:admin|shop_owner');
 });
 
 require __DIR__ . '/auth.php';

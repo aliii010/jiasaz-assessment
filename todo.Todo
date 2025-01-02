@@ -10,4 +10,5 @@ orders:
     ✔ create order @done(25-01-02 01:37)
     ✔ list my orders @done(25-01-02 02:16)
     ✔ filter my orders based on shops, status, and date. @done(25-01-02 18:27)
-    
+    ✔ list all orders for admin and shop owner. @done(25-01-02 19:19)
+    - filter all orders based on customer name and from to date.

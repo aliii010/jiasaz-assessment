@@ -37,4 +37,16 @@ class OrderController extends Controller
 
         return view('orders.my-orders', compact('orders', 'statuses'));
     }
+
+    public function getAllOrders(Request $request)
+    {
+        $orders = Order::all();
+        $statuses = OrderStatus::all();
+
+        if ($request->has('status') && $request->status != '') {
+            $orders = $orders->where('status_id', $request->status);
+        }
+
+        return view('orders.all-orders', compact('orders', 'statuses'));
+    }
 }

@@ -23,6 +23,11 @@
                             {{ __('Roles & Permissions') }}
                         </x-nav-link>
                     @endif
+                    @if (Auth::user()->hasRole('shop_owner') || Auth::user()->hasRole('admin'))
+                        <x-nav-link :href="route('orders.getAllOrders')" :active="request()->routeIs('orders.getAllOrders')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
                         {{ __('Shops') }}
                     </x-nav-link>
