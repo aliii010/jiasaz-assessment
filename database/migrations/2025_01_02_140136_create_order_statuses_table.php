@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('users')->nullable()->onDelete('set null');
-            $table->foreignId('product_id')->constrained('products')->nullable()->onDelete('set null');
-            $table->foreignId('status_id')->constrained('order_statuses')->onDelete('set null');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_statuses');
     }
 };
