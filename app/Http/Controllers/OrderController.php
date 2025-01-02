@@ -24,7 +24,12 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $orders = $user->orders;
+        $statuses = OrderStatus::all();
 
-        return view('orders.my-orders', compact('orders'));
+        if ($request->has('status') && $request->status != '') {
+            $orders = $orders->where('status_id', $request->status);
+        }
+
+        return view('orders.my-orders', compact('orders', 'statuses'));
     }
 }

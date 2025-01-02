@@ -14,10 +14,12 @@
                         <label for="status" class="block text-sm font-medium text-gray-700">Filter by Status</label>
                         <select id="status" name="status" class="form-select mr-4">
                             <option value="">All</option>
-                            <option value="pending">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
-                            <option value="delivered">Delivered</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}"
+                                    {{ request('status') == $status->id ? 'selected' : '' }}>
+                                    {{ $status->status }}
+                                </option>
+                            @endforeach
                         </select>
                         <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Filter</button>
                     </form>
@@ -39,7 +41,8 @@
                                 <p class="text-gray-600">{{ $order->product->description }}</p>
                                 <p class="text-gray-800 font-bold">${{ number_format($order->product->price, 2) }}
                                 </p>
-                                <p class="text-gray-800 font-bold">{{ __('Order placed in') }}: {{ $order->created_at }}
+                                <p class="text-gray-800 font-bold">{{ __('Order placed in') }}:
+                                    {{ $order->created_at }}
                                 </p>
                                 <p class="text-gray-800 font-bold">{{ __('Order Status') }}:
                                     {{ $order->status->status }}
