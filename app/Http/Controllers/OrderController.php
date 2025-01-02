@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,7 @@ class OrderController extends Controller
         Order::create([
             'product_id' => $request->product_id,
             'customer_id' => Auth::id(),
+            'status_id' => OrderStatus::where('status', 'pending')->first()->id,
         ]);
 
         return view('orders.success');

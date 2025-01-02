@@ -24,6 +24,11 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @if ($orders->isEmpty())
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
+                            <p class="text-gray-800 font-bold">{{ __('No orders found') }}</p>
+                        </div>
+                    @endif
 
                     @foreach ($orders as $order)
                         <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
@@ -32,10 +37,14 @@
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold mt-4">{{ $order->product->name }}</h3>
                                 <p class="text-gray-600">{{ $order->product->description }}</p>
-                                <p class="text-gray-800 font-bold">${{ number_format($order->product->price, 2) }}</p>
-                                <p class="text-gray-800 font-bold">{{ __('Order Date') }}: {{ $order->created_at }}</p>
-                                <p class="text-gray-800 font-bold">{{ __('Order Status') }}: {{ $order->status }}</p>
-                                <p class="text-gray-800 font-bold">{{ __('Shop') }}:
+                                <p class="text-gray-800 font-bold">${{ number_format($order->product->price, 2) }}
+                                </p>
+                                <p class="text-gray-800 font-bold">{{ __('Order placed in') }}: {{ $order->created_at }}
+                                </p>
+                                <p class="text-gray-800 font-bold">{{ __('Order Status') }}:
+                                    {{ $order->status->status }}
+                                </p>
+                                <p class="text-gray-800 font-bold">{{ __('From shop') }}:
                                     {{ $order->product->shop->name }}</p>
                             </div>
                         </div>
