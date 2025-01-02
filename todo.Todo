@@ -9,4 +9,5 @@ User Management by Admin:
 orders:
     ✔ create order @done(25-01-02 01:37)
     ✔ list my orders @done(25-01-02 02:16)
-    - filter my orders based on shops, status, and date.
+    ✔ filter my orders based on shops, status, and date. @done(25-01-02 18:27)
+    

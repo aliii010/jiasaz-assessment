@@ -11,6 +11,11 @@ class OrderController extends Controller
 {
     public function createOrder(Request $request)
     {
+        $existingOrder = Order::where('customer_id', Auth::id())->first();
+        if ($existingOrder) {
+            return view('orders/fail', ['message' => 'You already have an order in progress']);
+        }
+
         Order::create([
             'product_id' => $request->product_id,
             'customer_id' => Auth::id(),
