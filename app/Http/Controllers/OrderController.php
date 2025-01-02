@@ -40,12 +40,20 @@ class OrderController extends Controller
 
     public function getAllOrders(Request $request)
     {
-        $orders = Order::all();
+        $query = Order::query();
         $statuses = OrderStatus::all();
 
         if ($request->has('status') && $request->status != '') {
-            $orders = $orders->where('status_id', $request->status);
+            $query->where('status_id', $request->status);
         }
+
+        if ($request->has('customer_name') && $request->customer_name != '') {
+            $query->whereHas('customer', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->customer_name . '%');
+            });
+        }
+
+        $orders = $query->get();
 
         return view('orders.all-orders', compact('orders', 'statuses'));
     }

@@ -21,6 +21,12 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <label for="customer_name" class="block text-sm font-medium text-gray-700 mt-4">Filter by
+                            Customer Name</label>
+                        <input type="text" id="customer_name" name="customer_name"
+                            class="form-input mt-1 block w-full" value="{{ request('customer_name') }}">
+
                         <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Filter</button>
                     </form>
                 </div>
@@ -52,8 +58,8 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
+
             </div>
         </div>
     </div>
