@@ -53,6 +53,14 @@ class OrderController extends Controller
             });
         }
 
+        if ($request->has('from_date') && $request->from_date != '') {
+            $query->whereDate('created_at', '>=', $request->from_date);
+        }
+
+        if ($request->has('to_date') && $request->to_date != '') {
+            $query->whereDate('created_at', '<=', $request->to_date);
+        }
+
         $orders = $query->get();
 
         return view('orders.all-orders', compact('orders', 'statuses'));
