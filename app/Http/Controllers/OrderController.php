@@ -17,4 +17,12 @@ class OrderController extends Controller
 
         return view('orders.success');
     }
+
+    public function showCustomerOrders(Request $request)
+    {
+        $user = Auth::user();
+        $orders = $user->orders;
+
+        return view('orders.my-orders', compact('orders'));
+    }
 }

@@ -26,6 +26,11 @@
                     <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
                         {{ __('Shops') }}
                     </x-nav-link>
+                    @if (Auth::user()->hasRole('customer'))
+                        <x-nav-link :href="route('orders.showCustomerOrders')" :active="request()->routeIs('orders.showCustomerOrders')">
+                            {{ __('My Orders') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
