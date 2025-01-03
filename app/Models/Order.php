@@ -4,10 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderStatus;
+use SM\StateMachine\StateMachineInterface;
+use SM\Factory\FactoryInterface;
 
 class Order extends Model
 {
     protected $fillable = ['product_id', 'customer_id', 'status_id'];
+
+
+    public function stateMachine(): StateMachineInterface
+    {
+        $factory = app(FactoryInterface::class);
+        return $factory->get($this, 'order');
+    }
 
     public function customer()
     {

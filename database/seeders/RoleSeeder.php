@@ -14,30 +14,22 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::create(['name' => 'admin']);
-        $customer = Role::create(['name' => 'customer']);
-        $shopOwner = Role::create(['name' => 'shop_owner']);
-        $driver = Role::create(['name' => 'driver']);
+        // $permissions = [
+        //     'approve_orders',
+        //     'reject_orders',
+        //     'deliver_orders',
+        // ];
 
-        $permissions = [
-            'manage_roles',
-            'manage_users',
-            'create_orders',
-            'view_orders',
-            'update_orders',
-            'delete_orders',
-            'approve_orders',
-            'reject_orders',
-            'deliver_orders'
-        ];
+        // foreach ($permissions as $permission) {
+        //     Permission::create(['name' => $permission]);
+        // }
 
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
+        $admin = Role::where('name', 'admin')->first();
+        $shopOwner = Role::where('name', 'shop_owner')->first();
+        $driver = Role::where('name', 'driver')->first();
 
         $admin->givePermissionTo(Permission::all());
-        $customer->givePermissionTo(['create_orders', 'view_orders']);
-        $shopOwner->givePermissionTo(['view_orders']);
-        $driver->givePermissionTo(['view_orders', 'approve_orders', 'reject_orders', 'deliver_orders']);
+        $shopOwner->givePermissionTo(['approve_orders', 'reject_orders']);
+        $driver->givePermissionTo('deliver_orders');
     }
 }

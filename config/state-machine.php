@@ -16,47 +16,35 @@ return [
         ],
 
         // list of all possible states
-        'states' => [
-            // a state as associative array
-            ['name' => 'new'],
-            // a state as associative array with metadata
-            [
-                'name' => 'pending_review',
-                'metadata' => ['title' => 'Pending Review'],
-            ],
-            // states as string
-            'awaiting_changes',
-            'accepted',
-            'published',
-            'rejected',
-        ],
+        'states' => function () {
+            return App\MOdels\OrderStatus::pluck('name')->toArray();
+        },
 
         // list of all possible transitions
         'transitions' => [
-            'create' => [
-                'from' => ['new'],
-                'to' => 'pending_review',
-            ],
-            'ask_for_changes' => [
-                'from' =>  ['pending_review', 'accepted'],
-                'to' => 'awaiting_changes',
-                'metadata' => ['title' => 'Ask for changes'],
-            ],
-            'cancel_changes' => [
-                'from' => ['awaiting_changes'],
-                'to' => 'pending_review',
-            ],
-            'submit_changes' => [
-                'from' => ['awaiting_changes'],
-                'to' =>  'pending_review',
-            ],
             'approve' => [
-                'from' => ['pending_review', 'rejected'],
-                'to' =>  'accepted',
+                'from' => ['pending'],
+                'to' => 'approved',
             ],
-            'publish' => [
-                'from' => ['accepted'],
-                'to' =>  'published',
+            'reject' => [
+                'from' => ['pending'],
+                'to' => 'rejected',
+            ],
+            // 'start_preparing' => [
+            //     'from' => ['approved'],
+            //     'to' => 'preparing',
+            // ],
+            // 'prepare' => [
+            //     'from' => ['preparing'],
+            //     'to' => 'prepared',
+            // ],
+            // 'start_delivery' => [
+            //     'from' => ['prepared'],
+            //     'to' => 'delivering',
+            // ],
+            'deliver' => [
+                'from' => ['approved'],
+                'to' => 'delivered',
             ],
         ],
 
