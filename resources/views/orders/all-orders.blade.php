@@ -15,9 +15,9 @@
                         <select id="status" name="status" class="form-select mr-4">
                             <option value="">All</option>
                             @foreach ($statuses as $status)
-                                <option value="{{ $status->id }}"
-                                    {{ request('status') == $status->id ? 'selected' : '' }}>
-                                    {{ $status->status }}
+                                <option value="{{ $status }}"
+                                    {{ request('status') == $status ? 'selected' : '' }}>
+                                    {{ $status }}
                                 </option>
                             @endforeach
                         </select>
@@ -61,8 +61,16 @@
                                     {{ $order->created_at }}
                                 </p>
                                 <p class="text-gray-800 font-bold border-b">{{ __('Order Status') }}:
-                                    {{ $order->status->status }}
+                                    {{ $order->status }}
                                 </p>
+                                <form method="POST" action="{{ route('orders.updateOrderStatus') }}">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                    <button type="submit" name="transition" value="approve"
+                                        class="mt-2 px-4 py-2 bg-green-500 text-white rounded-md">Approve</button>
+                                    <button type="submit" name="transition" value="reject"
+                                        class="mt-2 px-4 py-2 bg-red-500 text-white rounded-md">Reject</button>
+                                </form>
                             </div>
                         </div>
                     @endforeach

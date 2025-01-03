@@ -45,22 +45,22 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\OrderStatus::create([
-            'status' => 'pending',
+            'name' => 'pending',
             'updated_at' => now(),
             'created_at' => now(),
         ]);
         \App\Models\OrderStatus::create([
-            'status' => 'approved',
+            'name' => 'approved',
             'updated_at' => now(),
             'created_at' => now(),
         ]);
         \App\Models\OrderStatus::create([
-            'status' => 'rejected',
+            'name' => 'rejected',
             'updated_at' => now(),
             'created_at' => now(),
         ]);
         \App\Models\OrderStatus::create([
-            'status' => 'delivered',
+            'name' => 'delivered',
             'updated_at' => now(),
             'created_at' => now(),
         ]);

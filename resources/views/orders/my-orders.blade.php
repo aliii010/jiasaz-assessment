@@ -15,9 +15,9 @@
                         <select id="status" name="status" class="form-select mr-4">
                             <option value="">All</option>
                             @foreach ($statuses as $status)
-                                <option value="{{ $status->id }}"
-                                    {{ request('status') == $status->id ? 'selected' : '' }}>
-                                    {{ $status->status }}
+                                <option value="{{ $status }}"
+                                    {{ request('status') == $status ? 'selected' : '' }}>
+                                    {{ $status }}
                                 </option>
                             @endforeach
                         </select>
@@ -45,7 +45,7 @@
                                     {{ $order->created_at }}
                                 </p>
                                 <p class="text-gray-800 font-bold">{{ __('Order Status') }}:
-                                    {{ $order->status->status }}
+                                    {{ $order->status }}
                                 </p>
                                 <p class="text-gray-800 font-bold">{{ __('From shop') }}:
                                     {{ $order->product->shop->name }}</p>

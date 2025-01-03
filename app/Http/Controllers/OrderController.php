@@ -19,7 +19,6 @@ class OrderController extends Controller
         Order::create([
             'product_id' => $request->product_id,
             'customer_id' => Auth::id(),
-            'status_id' => OrderStatus::where('status', 'pending')->first()->id,
         ]);
 
         return view('orders.success');
@@ -29,10 +28,10 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $orders = $user->orders;
-        $statuses = OrderStatus::all();
+        $statuses = getPossibleStatuses();
 
         if ($request->has('status') && $request->status != '') {
-            $orders = $orders->where('status_id', $request->status);
+            $orders = $orders->where('status', $request->status);
         }
 
         return view('orders.my-orders', compact('orders', 'statuses'));
@@ -41,10 +40,10 @@ class OrderController extends Controller
     public function getAllOrders(Request $request)
     {
         $query = Order::query();
-        $statuses = OrderStatus::all();
+        $statuses = getPossibleStatuses();
 
         if ($request->has('status') && $request->status != '') {
-            $query->where('status_id', $request->status);
+            $query->where('status', $request->status);
         }
 
         if ($request->has('customer_name') && $request->customer_name != '') {
@@ -64,5 +63,27 @@ class OrderController extends Controller
         $orders = $query->get();
 
         return view('orders.all-orders', compact('orders', 'statuses'));
+    }
+
+    public function updateOrderStatus(Request $request)
+    {
+        $order = Order::find($request->order_id);
+        $transition = $request->transition;
+        $user = $request->user();
+
+        $requiredPermission = $transition . '_orders';
+        if (!$user->can($requiredPermission)) {
+            return view('orders.fail', ['message' => 'You do not have permission to perform this action']);
+        }
+
+        $stateMachine = $order->stateMachine();
+        if (!$stateMachine->can($transition)) {
+            return view('orders.fail', ['message' => 'Invalid transition']);
+        }
+
+        $stateMachine->apply($transition);
+        $order->save();
+
+        return redirect()->route('orders.getAllOrders');
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('users')->nullable()->onDelete('set null');
             $table->foreignId('product_id')->constrained('products')->nullable()->onDelete('set null');
-            $table->foreignId('status_id')->constrained('order_statuses')->onDelete('set null');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

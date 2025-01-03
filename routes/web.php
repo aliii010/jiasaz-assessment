@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orders', [OrderController::class, 'createOrder'])->name('orders.createOrder')->middleware('role:customer');
     Route::get('/orders', [OrderController::class, 'showCustomerOrders'])->name('orders.showCustomerOrders')->middleware('role:customer');
     Route::get('/orders/all', [OrderController::class, 'getAllOrders'])->name('orders.getAllOrders')->middleware('role:admin|shop_owner');
+    Route::post('/orders/status', [OrderController::class, 'updateOrderStatus'])->name('orders.updateOrderStatus');
 });
 
 require __DIR__ . '/auth.php';
