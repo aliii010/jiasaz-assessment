@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('users')->nullable()->onDelete('set null');
-            $table->foreignId('product_id')->constrained('products')->nullable()->onDelete('set null');
+            $table->foreignId('customer_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
+            $table->foreignId('driver_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

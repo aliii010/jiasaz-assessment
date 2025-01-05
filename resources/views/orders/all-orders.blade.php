@@ -57,12 +57,21 @@
                                 <p class="text-gray-800 font-bold border-b">
                                     ${{ number_format($order->product->price, 2) }}
                                 </p>
+                                <p class="text-gray-800 font-bold">{{ __('From shop') }}:
+                                    {{ $order->product->shop->name }}
+                                </p>
                                 <p class="text-gray-800 font-bold border-b">{{ __('Order placed in') }}:
                                     {{ $order->created_at }}
                                 </p>
                                 <p class="text-gray-800 font-bold border-b">{{ __('Order Status') }}:
                                     {{ $order->status }}
                                 </p>
+                                @if (Auth::user()->hasPermissionTo('deliver_orders') && Auth::id() == $order->driver_id)
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">
+                                        {{ __('Assigned to you, Go deliver the order') }}
+                                    </span>
+                                @endif
                                 <form method="POST" action="{{ route('orders.updateOrderStatus') }}">
                                     @csrf
                                     <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -70,7 +79,16 @@
                                         class="mt-2 px-4 py-2 bg-green-500 text-white rounded-md">Approve</button>
                                     <button type="submit" name="transition" value="reject"
                                         class="mt-2 px-4 py-2 bg-red-500 text-white rounded-md">Reject</button>
+
+                                    <button type="submit" name="transition" value="deliver"
+                                        class="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-md">Mark as
+                                        Delivered</button>
                                 </form>
+                                @if (Auth::user()->hasPermissionTo('deliver_orders') && $order->status == 'approved' && !$order->driver_id)
+                                    <a href="{{ route('orders.assignOrderToDriver', ['orderId' => $order->id]) }}"
+                                        class="mt-2 px-4 py-2 bg-purple-500 text-white rounded-md inline-block text-center">Take
+                                        Order</a>
+                                @endif
                             </div>
                         </div>
                     @endforeach

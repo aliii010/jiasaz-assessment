@@ -9,7 +9,7 @@ use SM\Factory\FactoryInterface;
 
 class Order extends Model
 {
-    protected $fillable = ['product_id', 'customer_id', 'status'];
+    protected $fillable = ['product_id', 'customer_id', 'status', 'driver_id'];
 
 
     public function stateMachine(): StateMachineInterface

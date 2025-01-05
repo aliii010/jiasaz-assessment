@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,12 +75,31 @@ class OrderController extends Controller
             return view('orders.fail', ['message' => 'You do not have permission to perform this action']);
         }
 
+        if ($transition == 'deliver' && $order->driver_id != $user->id) {
+            return view('orders.fail', ['message' => 'You are not assigned to this order']);
+        }
+
         $stateMachine = $order->stateMachine();
         if (!$stateMachine->can($transition)) {
             return view('orders.fail', ['message' => 'Invalid transition']);
         }
 
         $stateMachine->apply($transition);
+        $order->save();
+
+        return redirect()->route('orders.getAllOrders');
+    }
+
+    public function assignOrderToDriver(Request $request, $orderId)
+    {
+        $order = Order::find($orderId);
+        $user = $request->user();
+
+        if (!$user->can('deliver_orders')) {
+            return view('orders.fail', ['message' => 'You do not have permission to perform this action']);
+        }
+
+        $order->driver_id = $user->id;
         $order->save();
 
         return redirect()->route('orders.getAllOrders');

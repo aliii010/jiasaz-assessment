@@ -11,4 +11,6 @@ orders:
     ✔ list my orders @done(25-01-02 02:16)
     ✔ filter my orders based on shops, status, and date. @done(25-01-02 18:27)
     ✔ list all orders for admin and shop owner. @done(25-01-02 19:19)
-    - filter all orders based on customer name and from to date.
+    ✔ filter all orders based on customer name and from to date. @done(25-01-04 00:45)
+    ✔ assign order to driver @done(25-01-04 22:51)
+    ✔ mark order as delivered by driver, only if the driver has assigned the order to himself @done(25-01-05 14:05)

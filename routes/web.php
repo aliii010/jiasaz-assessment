@@ -46,8 +46,9 @@ Route::middleware(['auth'])->group(function () {
     // Order routes
     Route::post('/orders', [OrderController::class, 'createOrder'])->name('orders.createOrder')->middleware('role:customer');
     Route::get('/orders', [OrderController::class, 'showCustomerOrders'])->name('orders.showCustomerOrders')->middleware('role:customer');
-    Route::get('/orders/all', [OrderController::class, 'getAllOrders'])->name('orders.getAllOrders')->middleware('role:admin|shop_owner');
+    Route::get('/orders/all', [OrderController::class, 'getAllOrders'])->name('orders.getAllOrders')->middleware('role:admin|shop_owner|driver');
     Route::post('/orders/status', [OrderController::class, 'updateOrderStatus'])->name('orders.updateOrderStatus');
+    Route::get('/orders/assign-to-driver/{orderId}', [OrderController::class, 'assignOrderToDriver'])->name('orders.assignOrderToDriver')->middleware('permission:deliver_orders');
 });
 
 require __DIR__ . '/auth.php';
