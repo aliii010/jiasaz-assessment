@@ -42,27 +42,5 @@ class DatabaseSeeder extends Seeder
         //     'updated_at' => now(),
         //     'created_at' => now(),
         // ]);
-
-
-        \App\Models\OrderStatus::create([
-            'name' => 'pending',
-            'updated_at' => now(),
-            'created_at' => now(),
-        ]);
-        \App\Models\OrderStatus::create([
-            'name' => 'approved',
-            'updated_at' => now(),
-            'created_at' => now(),
-        ]);
-        \App\Models\OrderStatus::create([
-            'name' => 'rejected',
-            'updated_at' => now(),
-            'created_at' => now(),
-        ]);
-        \App\Models\OrderStatus::create([
-            'name' => 'delivered',
-            'updated_at' => now(),
-            'created_at' => now(),
-        ]);
     }
 }

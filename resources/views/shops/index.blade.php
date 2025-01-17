@@ -10,7 +10,7 @@
             @foreach ($shops as $shop)
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <a href="{{ route('products.getShopsProducts', $shop->id) }}">
-                        <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $shop->name }}"
+                        <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}"
                             class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-lg font-semibold">{{ $shop->name }}</h3>
