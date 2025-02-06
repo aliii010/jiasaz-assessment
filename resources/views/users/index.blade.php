@@ -35,9 +35,9 @@
                         <table class="min-w-full bg-white border border-gray-200">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="py-2 px-4 border-b">{{ __('Name') }}</th>
-                                    <th class="py-2 px-4 border-b">{{ __('Email') }}</th>
-                                    <th class="py-2 px-4 border-b">{{ __('Role') }}</th>
+                                    <th class="py-2 px-4 border-b text-center">{{ __('Name') }}</th>
+                                    <th class="py-2 px-4 border-b text-center">{{ __('Email') }}</th>
+                                    <th class="py-2 px-4 border-b text-center">{{ __('Role') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

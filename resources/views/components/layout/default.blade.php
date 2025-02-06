@@ -14,6 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
+    {{-- fontawesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <script src="/assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="/assets/js/popper.min.js"></script>
     <script defer src="/assets/js/tippy-bundle.umd.min.js"></script>
