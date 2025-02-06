@@ -30,6 +30,12 @@
                 </form>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @if ($products->isEmpty())
+                        <div
+                            class="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4">
+                            <p class="text-gray-600 dark:text-gray-300">No products found.</p>
+                        </div>
+                    @endif
 
                     @foreach ($products as $product)
                         <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
