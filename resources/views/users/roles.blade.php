@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('Assign role to user') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h3 class="text-lg font-medium text-gray-900">{{ $user->name }}</h3>
+            <div class="bg-white dark:bg-dark overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">{{ $user->name }}</h3>
                 <form action="{{ route('users.updateRoles', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -17,16 +17,17 @@
                             <div class="flex items-center">
                                 <input type="checkbox" name="roles[]" value="{{ $role->name }}"
                                     {{ $user->roles->contains($role) ? 'checked' : '' }}
-                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                    class="form-checkbox h-4 w-4 text-primary border-dark dark:border-dark-light transition duration-150 ease-in-out">
                                 <label for="role-{{ $role->id }}"
-                                    class="ml-2 block text-sm leading-5 text-gray-900">
+                                    class="ml-2 block text-sm leading-5 text-gray-900 dark:text-white">
                                     {{ $role->name }}
                                 </label>
                             </div>
                         @endforeach
                     </div>
                     <div class="mt-6">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md">
+                        <button type="submit"
+                            class="px-4 py-2 bg-primary dark:bg-primary-dark text-white rounded-md hover:bg-primary-light dark:hover:bg-primary">
                             {{ __('Update Roles') }}
                         </button>
                     </div>
