@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Shop;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Factories\ShopFactory;
 
 class ShopSeeder extends Seeder
 {
@@ -13,14 +14,6 @@ class ShopSeeder extends Seeder
      */
     public function run(): void
     {
-        $shop1 = Shop::find(61);
-        $shop2 = Shop::find(62);
-
-
-        $shop1->image = 'images/shop/shop1.avif';
-        $shop2->image = 'images/shop/shop2.avif';
-
-        $shop1->save();
-        $shop2->save();
+        Shop::factory()->count(10)->create();
     }
 }

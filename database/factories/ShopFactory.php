@@ -23,6 +23,7 @@ class ShopFactory extends Factory
             'shop_owner_id' => User::factory(),
             'created_at' => now(),
             'updated_at' => now(),
+            'image' => "images/shops/shop" . rand(1, 2) . ".avif"
         ];
     }
 }
