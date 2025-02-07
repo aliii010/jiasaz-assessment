@@ -67,8 +67,7 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    class="bg-danger dark:bg-danger-dark hover:bg-danger-light text-white font-bold py-2 px-4 rounded">
+                                                <button type="submit" class="btn btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
