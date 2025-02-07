@@ -20,9 +20,10 @@ class ShopFactory extends Factory
         return [
             'name' => $this->faker->company,
             'address' => $this->faker->address,
-            'shop_owner_id' => User::factory(),
+            'shop_owner_id' => User::role('shop_owner')->inRandomOrder()->value('id'),
             'created_at' => now(),
             'updated_at' => now(),
+            'image' => "images/shops/shop" . rand(1, 2) . ".avif"
         ];
     }
 }

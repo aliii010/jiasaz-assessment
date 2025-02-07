@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Shop;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
@@ -18,7 +19,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'shop_id' => \App\Models\Shop::factory(),
+            'shop_id' => Shop::inRandomOrder()->value('id') ?? Shop::factory(),
         ];
     }
 }
