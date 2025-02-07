@@ -15,9 +15,9 @@ class ShopOwnerSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('admin'),
+            'name' => 'mr. shop owner',
+            'email' => 'shop.owner@test.com',
+            'password' => Hash::make('shopowner'),
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
