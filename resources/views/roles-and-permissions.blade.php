@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="mb-4 flex space-x-2">
+            <div class="mb-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                 <a href="{{ route('roles.create') }}" class="btn btn-success">
                     Create a new role +
                 </a>
@@ -16,7 +16,7 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Roles Section -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4 dark:text-white">Roles</h3>
@@ -26,11 +26,11 @@
                         @foreach ($roles as $role)
                             <div class="bg-white dark:bg-black overflow-hidden shadow-sm sm:rounded-lg mb-4">
                                 <div class="p-6 text-gray-900 dark:text-white">
-                                    <div class="flex justify-between items-center">
+                                    <div class="flex flex-col sm:flex-row justify-between items-center">
                                         <div>
                                             <h2 class="text-2xl font-bold">{{ $role->name }}</h2>
                                         </div>
-                                        <div class="flex space-x-2">
+                                        <div class="flex space-x-2 mt-2 sm:mt-0">
                                             <a href="{{ route('roles.edit', $role->id) }}"
                                                 class="btn btn-secondary">Edit
                                             </a>
@@ -62,11 +62,11 @@
                         @foreach ($permissions as $permission)
                             <div class="bg-white dark:bg-black overflow-hidden shadow-sm sm:rounded-lg mb-4">
                                 <div class="p-6 text-gray-900 dark:text-white">
-                                    <div class="flex justify-between items-center">
+                                    <div class="flex flex-col sm:flex-row justify-between items-center">
                                         <div>
                                             <h2 class="text-2xl font-bold">{{ $permission->name }}</h2>
                                         </div>
-                                        <div class="flex space-x-2">
+                                        <div class="flex space-x-2 mt-2 sm:mt-0">
                                             <a href="{{ route('permissions.edit', $permission->id) }}"
                                                 class="btn btn-secondary">Edit</a>
                                             <form action="{{ route('permissions.destroy', $permission->id) }}"

@@ -4,8 +4,8 @@
             <div class="bg-white dark:bg-black shadow-sm sm:rounded-lg overflow-hidden">
                 <div class="p-6 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700">
                     <form method="GET" action="{{ route('users.index') }}">
-                        <div class="flex items-center mb-4 space-x-4">
-                            <div>
+                        <div class="flex flex-col sm:flex-row items-center mb-4 space-y-4 sm:space-y-0 sm:space-x-4">
+                            <div class="w-full sm:w-auto">
                                 <select name="role"
                                     class="form-select block w-full p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600">
                                     <option value="">{{ __('All Roles') }}</option>
@@ -17,8 +17,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary font-bold py-2 px-4 rounded">
+                            <div class="w-full sm:w-auto">
+                                <button type="submit"
+                                    class="btn btn-primary font-bold py-2 px-4 rounded w-full sm:w-auto">
                                     {{ __('Filter') }}
                                 </button>
                             </div>
