@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-dark overflow-hidden shadow-xl sm:rounded-lg p-6">
+            <div class="bg-white dark:bg-black overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <div class="mb-4">
                     <form method="GET" action="{{ route('orders.showCustomerOrders') }}">
                         <label for="status" class="block text-sm font-medium text-gray-700 dark:text-white">Filter by
@@ -22,8 +22,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <button type="submit"
-                            class="mt-2 px-4 py-2 bg-blue-500 dark:bg-primary hover:bg-blue-700 dark:hover:bg-primary-dark text-white rounded-md">Filter</button>
+                        <button type="submit" class="btn btn-primary mt-4">Filter</button>
                     </form>
                 </div>
 
@@ -37,13 +36,17 @@
 
                     @foreach ($orders as $order)
                         <div
-                            class="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4 relative">
-                            <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $order->product->name }}"
-                                class="w-full h-48 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold mt-4 dark:text-white">{{ $order->product->name }}</h3>
-                                <p class="text-gray-600 dark:text-gray-300">{{ $order->product->description }}</p>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold">
+                            class="max-w-[19rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
+                            <div class="py-7 px-6">
+                                <div class="-mt-7 mb-7 -mx-6 rounded-tl rounded-tr h-[215px] overflow-hidden">
+                                    <img src={{ asset('images/no-image.jpg') }} alt="image"
+                                        class="w-full h-full object-cover" />
+                                </div>
+                                <h5 class="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
+                                    {{ $order->product->name }}
+                                </h5>
+                                <p class="text-white-dark mb-4">{{ $order->product->description }}</p>
+                                <p class="text-gray-800 dark:text-gray-200 font-bold">Price:
                                     ${{ number_format($order->product->price, 2) }}</p>
                                 <p class="text-gray-800 dark:text-gray-200 font-bold">{{ __('Order placed in') }}:
                                     {{ $order->created_at }}</p>
