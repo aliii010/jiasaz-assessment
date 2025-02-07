@@ -31,7 +31,6 @@
                 </form>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<<<<<<< HEAD
                     @if ($products->isEmpty())
                         <div
                             class="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4">
@@ -39,8 +38,6 @@
                         </div>
                     @endif
 
-=======
->>>>>>> ui-integration
                     @foreach ($products as $product)
                         <div
                             class="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4 relative">
