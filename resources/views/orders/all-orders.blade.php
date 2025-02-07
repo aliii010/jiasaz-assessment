@@ -1,13 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
-            {{ __('My Orders') }}
-        </h2>
-    </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-dark overflow-hidden shadow-xl sm:rounded-lg p-6">
+            <div class="bg-white dark:bg-black overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <div class="mb-4">
                     <form method="GET" action="{{ route('orders.getAllOrders') }}">
                         <label for="status" class="block text-sm font-medium text-gray-700 dark:text-white">Filter by
@@ -42,8 +37,7 @@
                             class="form-input mt-1 block w-full bg-white dark:bg-black dark:text-white border dark:border-gray-600 rounded"
                             value="{{ request('to_date') }}">
 
-                        <button type="submit"
-                            class="mt-2 px-4 py-2 bg-blue-500 dark:bg-primary hover:bg-blue-700 dark:hover:bg-primary-dark text-white rounded-md">Filter</button>
+                        <button type="submit" class="btn btn-primary mt-3">Filter</button>
                     </form>
                 </div>
 
@@ -57,7 +51,7 @@
 
                     @foreach ($orders as $order)
                         <div
-                            class="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4 relative">
+                            class="bg-white dark:bg-[#191e3a] border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4 relative">
                             <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $order->product->name }}"
                                 class="w-full h-48 object-cover rounded-t-lg">
                             <div class="p-4">
@@ -83,11 +77,11 @@
                                     @csrf
                                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                                     <button type="submit" name="transition" value="approve"
-                                        class="mt-2 px-4 py-2 bg-green-500 dark:bg-success hover:bg-green-700 dark:hover:bg-success-dark text-white rounded-md">Approve</button>
+                                        class="mt-2 px-4 py-2 btn btn-success">Approve</button>
                                     <button type="submit" name="transition" value="reject"
-                                        class="mt-2 px-4 py-2 bg-red-500 dark:bg-danger hover:bg-red-700 dark:hover:bg-danger-dark text-white rounded-md">Reject</button>
+                                        class="mt-2 px-4 py-2 btn btn-danger">Reject</button>
                                     <button type="submit" name="transition" value="deliver"
-                                        class="mt-2 px-4 py-2 bg-yellow-500 dark:bg-warning hover:bg-yellow-700 dark:hover:bg-warning-dark text-white rounded-md">Mark
+                                        class="mt-2 px-4 py-2 btn btn-warning">Mark
                                         as Delivered</button>
                                 </form>
                                 @if (Auth::user()->hasPermissionTo('deliver_orders') && $order->status == 'approved' && !$order->driver_id)
