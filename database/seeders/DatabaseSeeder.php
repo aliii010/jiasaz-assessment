@@ -5,6 +5,13 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\AdminUserSeeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\PermissionSeeder;
+use Database\Seeders\ShopSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\ShopOwnerSeeder;
+use Database\Seeders\ProductSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,34 +20,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $user = User::find(3);
-        // $user->assignRole('admin');
-
-
-
-        // \App\Models\User::factory(10)->create();
-
-
-        // \App\Models\Product::factory(10)->create();
-
-
-        // \App\Models\Category::create([
-        //     'name' => 'Electronics',
-        //     'shop_id' => 61,
-        //     'updated_at' => now(),
-        //     'created_at' => now(),
-        // ]);
-        // \App\Models\Category::create([
-        //     'name' => 'Clothing',
-        //     'shop_id' => 62,
-        //     'updated_at' => now(),
-        //     'created_at' => now(),
-        // ]);
-        // \App\Models\Category::create([
-        //     'name' => 'Furniture',
-        //     'shop_id' => 61,
-        //     'updated_at' => now(),
-        //     'created_at' => now(),
-        // ]);
+        $this->call([
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            AdminUserSeeder::class,
+            ShopOwnerSeeder::class,
+            ShopSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
     }
 }
