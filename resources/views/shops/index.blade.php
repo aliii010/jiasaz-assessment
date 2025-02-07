@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($shops as $shop)
-                <div class="bg-white dark:bg-dark rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white dark:bg-black rounded-lg shadow-md overflow-hidden">
                     <a href="{{ route('products.getShopsProducts', $shop->id) }}">
                         <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}"
                             class="w-full h-48 object-cover">
