@@ -18,8 +18,7 @@
                                 </select>
                             </div>
                             <div>
-                                <button type="submit"
-                                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
+                                <button type="submit" class="btn btn-primary font-bold py-2 px-4 rounded">
                                     {{ __('Filter') }}
                                 </button>
                             </div>
