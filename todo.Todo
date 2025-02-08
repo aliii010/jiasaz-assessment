@@ -14,7 +14,9 @@ orders:
     ✔ filter all orders based on customer name and from to date. @done(25-01-04 00:45)
     ✔ assign order to driver @done(25-01-04 22:51)
     ✔ mark order as delivered by driver, only if the driver has assigned the order to himself @done(25-01-05 14:05)
+    - add a timeline to the order to show the order status changes in my orders page
+    - add a page to change the order workflow from the ui
 
+todo:
+    - you can use modal for deleteing roles and permissions and rejecting orders
 
-heyy:
-    - include the div container for the input text component 
