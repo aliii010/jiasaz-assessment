@@ -19,4 +19,5 @@ orders:
 
 todo:
     - you can use modal for deleteing roles and permissions and rejecting orders
+    - make all the icons components
 

@@ -50,47 +50,30 @@
                     @endif
 
                     @foreach ($orders as $order)
-                        <div
-                            class="bg-white dark:bg-[#191e3a] border border-gray-200 dark:border-gray-600 rounded-lg shadow-md p-4 relative">
-                            <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $order->product->name }}"
-                                class="w-full h-48 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold mt-4 dark:text-white">{{ $order->product->name }}</h3>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold border-b">{{ __('Created by ') }}:
-                                    {{ $order->customer->name }}</p>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold border-b">
-                                    ${{ number_format($order->product->price, 2) }}
-                                </p>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold">{{ __('From shop') }}:
-                                    {{ $order->product->shop->name }}</p>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold border-b">
-                                    {{ __('Order placed in') }}: {{ $order->created_at }}</p>
-                                <p class="text-gray-800 dark:text-gray-200 font-bold border-b">
-                                    {{ __('Order Status') }}: {{ $order->status }}</p>
-                                @if (Auth::user()->hasPermissionTo('deliver_orders') && Auth::id() == $order->driver_id)
-                                    <span
-                                        class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                                        {{ __('Assigned to you, Go deliver the order') }}
-                                    </span>
-                                @endif
-                                <form method="POST" action="{{ route('orders.updateOrderStatus') }}">
-                                    @csrf
-                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                    <button type="submit" name="transition" value="approve"
-                                        class="mt-2 px-4 py-2 btn btn-success">Approve</button>
-                                    <button type="submit" name="transition" value="reject"
-                                        class="mt-2 px-4 py-2 btn btn-danger">Reject</button>
-                                    <button type="submit" name="transition" value="deliver"
-                                        class="mt-2 px-4 py-2 btn btn-warning">Mark
-                                        as Delivered</button>
-                                </form>
-                                @if (Auth::user()->hasPermissionTo('deliver_orders') && $order->status == 'approved' && !$order->driver_id)
-                                    <a href="{{ route('orders.assignOrderToDriver', ['orderId' => $order->id]) }}"
-                                        class="mt-2 px-4 py-2 bg-purple-500 dark:bg-purple-700 text-white rounded-md inline-block text-center">Take
-                                        Order</a>
-                                @endif
-                            </div>
-                        </div>
+                        <x-order-card :order="$order" customerName="{{ $order->customer->name }}">
+                            @if (Auth::user()->hasPermissionTo('deliver_orders') && Auth::id() == $order->driver_id && $order->status != 'delivered')
+                                <span
+                                    class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                    {{ __('Assigned to you, Go deliver the order') }}
+                                </span>
+                            @endif
+                            <form method="POST" action="{{ route('orders.updateOrderStatus') }}">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                <button type="submit" name="transition" value="approve"
+                                    class="mt-2 px-4 py-2 btn btn-success w-full">Approve</button>
+                                <button type="submit" name="transition" value="reject"
+                                    class="mt-2 px-4 py-2 btn btn-danger w-full">Reject</button>
+                                <button type="submit" name="transition" value="deliver"
+                                    class="mt-2 px-4 py-2 btn btn-warning w-full">Mark
+                                    as Delivered</button>
+                            </form>
+                            @if (Auth::user()->hasPermissionTo('deliver_orders') && $order->status == 'approved' && !$order->driver_id)
+                                <a href="{{ route('orders.assignOrderToDriver', ['orderId' => $order->id]) }}"
+                                    class="mt-2 px-4 py-2 btn btn-secondary">Take
+                                    Order</a>
+                            @endif
+                        </x-order-card>
                     @endforeach
                 </div>
             </div>
