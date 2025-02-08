@@ -50,7 +50,8 @@
                                             {{ $user->name }}</td>
                                         <td class="py-3 px-4 border-b text-center text-gray-900 dark:text-white">
                                             {{ $user->email }}</td>
-                                        <td class="py-3 px-4 border-b text-center text-gray-900 dark:text-white">
+                                        <td
+                                            class="py-3 px-4 border-b text-center text-gray-900 dark:text-white flex items-center justify-center">
                                             @if ($user->roles->isEmpty())
                                                 <span>-</span>
                                             @else
@@ -58,7 +59,7 @@
                                             @endif
                                             <a href="{{ route('users.showUserRoles', $user->id) }}"
                                                 class="ml-2 text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
-                                                <i class="fas fa-edit"></i>
+                                                <x-icons.edit width="18" height="18" />
                                             </a>
                                         </td>
                                     </tr>
