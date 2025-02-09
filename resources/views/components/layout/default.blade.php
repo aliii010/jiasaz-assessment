@@ -24,6 +24,7 @@
     <script defer src="/assets/js/popper.min.js"></script>
     <script defer src="/assets/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/assets/js/sweetalert.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css'])
 </head>
 
