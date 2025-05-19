@@ -442,7 +442,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-responsive-nav-link :href="route('logout')" class="text-red-500 !py-3" @click="toggle"
+                                <x-nav-link :href="route('logout')" class="text-red-500 !py-3" @click="toggle"
                                     onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                     <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0 rotate-90" width="18"
@@ -455,7 +455,7 @@
                                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     Sign Out
-                                </x-responsive-nav-link>
+                                </x-nav-link>
                             </form>
                         </li>
                     </ul>
