@@ -76,3 +76,7 @@ Here are some screenshots of the final project:
 ### 📱 Orders page
 <img src="screenshots/orders.png" alt="****App Preview" width="600"/>
 
+--- 
+
+> **UI Note:** The user interface of this project is based on the [Vristo Admin Template](https://vristo.sbthemes.com/).
+
